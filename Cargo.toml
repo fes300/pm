@@ -8,4 +8,5 @@ edition = "2021"
 [dependencies]
 clap = { version = "4.5.4", features = ["derive"] }
 clap_complete = "4.5.2"
+colorized = "1.0.0"
 inquire = "0.7.5"
