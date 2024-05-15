@@ -29,9 +29,9 @@ fn main() {
     }
 }
 
-fn setup() {
-    let flakes_destination_path = prepend_home("flakes");
+fn flakes_destination_path()-> String { prepend_home(".pm/flakes") }
 
+fn setup() {
     println!("\n");
     
     include_dir!("./src/flakes").dirs().for_each(|d| {
@@ -47,7 +47,7 @@ fn setup() {
 
         let flake_destination_path = format!(
             "{}/{}",
-            flakes_destination_path.clone(),
+            flakes_destination_path(),
             flake_dir
         );
 
@@ -168,12 +168,12 @@ fn cleanup(proj: &str, flake_location: String) {
 }
 
 fn default_flake_location() -> String {
-    prepend_home(format!("flakes/{}", DEFAULT_FLAKE).as_str())
+    format!("{}/{}", flakes_destination_path(), DEFAULT_FLAKE)
 }
 
 fn flake_location(proj: &str, known_projects: Vec<&str>) -> String {
     if known_projects.contains(&proj) {
-        return prepend_home(format!("flakes/{}", proj).as_str());
+        return format!("{}/{}", flakes_destination_path(), proj);
     }
 
     let default_flake_path = format!("{}/flake.nix", default_flake_location());
