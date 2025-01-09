@@ -120,6 +120,8 @@ fn boot_project() {
         "billingservice",
         "frontend",
         "rustcli",
+        "haskellcli",
+        "adinsightsservice",
         "",
         "-- other projects --",
         "",
